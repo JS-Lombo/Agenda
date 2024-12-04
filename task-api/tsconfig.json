@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
     "target": "ES2017",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
@@ -10,15 +14,29 @@
     "module": "commonjs", // Cambiado a commonjs para compatibilidad con TypeORM
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "isolatedModules": false, // Cambiado a false, ya que TypeORM requiere metadatos
+    "isolatedModules": true, // Cambiado a false, ya que TypeORM requiere metadatos
     "experimentalDecorators": true, // Habilitado para decoradores
     "emitDecoratorMetadata": true, // Habilitado para metadatos de decoradores
     "jsx": "preserve",
     "incremental": true,
     "paths": {
-      "@/*": ["./*"]
-    }
+      "@/*": [
+        "./*"
+      ]
+    },
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules"]
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    "next-env.d.ts",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }
