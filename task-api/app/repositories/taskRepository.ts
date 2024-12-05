@@ -35,7 +35,7 @@ export class TaskRepository {
     }
   }
 
-  async getTaskById(id: number): Promise<Task | null> {
+  async getTaskById(id: string): Promise<Task | null> {
     try {
       if (!id) {
         throw new Error("El ID de la tarea es obligatorio.");
@@ -51,7 +51,7 @@ export class TaskRepository {
     }
   }
 
-  async updateTask(id: number, updatedFields: Partial<Task>): Promise<Task | null> {
+  async updateTask(id: string, updatedFields: Partial<Task>): Promise<Task | null> {
     try {
       if (!id) {
         throw new Error("El ID de la tarea es obligatorio.");

@@ -9,7 +9,7 @@ export class TaskService{
     } 
 
     async createTaskService(title:string, completed:boolean = false):Promise<Task>{
-        return this.taskRepository.createTask({title,completed});
+        return await this.taskRepository.createTask({title,completed});
     }
 
     async getAllTasksService(): Promise<Task[]>{
