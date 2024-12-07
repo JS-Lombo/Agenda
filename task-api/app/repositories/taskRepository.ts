@@ -38,37 +38,65 @@ export class TaskRepository {
   async getTaskById(id: string): Promise<Task | null> {
     try {
       if (!id) {
-        throw new Error("El ID de la tarea es obligatorio.");
+        console.error("El ID de la tarea es obligatorio.");
+        return null;
       }
-      const task = await this.repository.findOneBy({ id });
-      if (!task) {
-        throw new Error(`No se encontró ninguna tarea con el ID ${id}.`);
-      }
-      return task;
+      return await this.repository.findOneBy({ id });
     } catch (error) {
       console.error("Error al obtener la tarea:", error.message);
-      throw new Error(`No se pudo obtener la tarea con el ID ${id}.`);
+      throw new Error(`Error al obtener la tarea con el ID ${id}.`);
     }
   }
 
+  // async getTaskById(id: string): Promise<Task | null> {
+  //   try {
+  //     if (!id) {
+  //       throw new Error("El ID de la tarea es obligatorio.");
+  //     }
+  //     const task = await this.repository.findOneBy({ id });
+  //     if (!task) {
+  //       throw new Error(`No se encontró ninguna tarea con el ID ${id}.`);
+  //     }
+  //     return task;
+  //   } catch (error) {
+  //     console.error("Error al obtener la tarea:", error.message);
+  //     throw new Error(`No se pudo obtener la tarea con el ID ${id}.`);
+  //   }
+  // }
   async updateTask(id: string, updatedFields: Partial<Task>): Promise<Task | null> {
     try {
-      if (!id) {
-        throw new Error("El ID de la tarea es obligatorio.");
-      }
       const task = await this.getTaskById(id);
       if (!task) {
-        throw new Error(`No se encontró ninguna tarea con el ID ${id}.`);
+        console.error(`No se encontró ninguna tarea con el ID ${id}.`);
+        return null;
       }
       Object.assign(task, updatedFields);
       return await this.repository.save(task);
     } catch (error) {
       console.error("Error al actualizar la tarea:", error.message);
-      throw new Error(`No se pudo actualizar la tarea con el ID ${id}.`);
+      throw new Error(`Error al actualizar la tarea con el ID ${id}.`);
     }
   }
+  
 
-  async deleteTask(id: number): Promise<boolean> {
+  // async updateTask(id: string, updatedFields: Partial<Task>): Promise<Task | null> {
+  //   try {
+  //     if (!id) {
+  //       throw new Error("El ID de la tarea es obligatorio.");
+  //     }
+  //     const task = await this.getTaskById(id);
+  //     if (!task) {
+  //       throw new Error(`No se encontró ninguna tarea con el ID ${id}.`);
+  //     }
+  //     Object.assign(task, updatedFields);
+  //     return await this.repository.save(task);
+  //   } catch (error) {
+  //     console.error("Error al actualizar la tarea:", error.message);
+  //     throw new Error(`No se pudo actualizar la tarea con el ID ${id}.`);
+  //   }
+  // }
+
+  async deleteTask(id: string): Promise<boolean> {
     try {
       if (!id) {
         throw new Error("El ID de la tarea es obligatorio.");

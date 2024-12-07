@@ -16,19 +16,29 @@ export class TaskService{
         return await this.taskRepository.getTasks();
     }
 
-    async gettaskByIdService(id:number):Promise<Task>{
+    async gettaskByIdService(id:string):Promise<Task>{
         return await this.taskRepository.getTaskById(id);
     }
 
-    async getTaskById(id:number):Promise<Task>{
-        return await this.taskRepository.getTaskById(id);
-    }
+    async getTaskById(id: string): Promise<Task | null> {
+        return this.taskRepository.getTaskById(id);
+      }
+    
+      async updateTask(id: string, updatedFields: Partial<Task>): Promise<Task | null> {
+        return this.taskRepository.updateTask(id, updatedFields);
+      }
+    
 
-    async updatetask(id:number,updatedFields:Partial<Task>):Promise<Task|null>{
-        return await this.taskRepository.updateTask(id,updatedFields);
-    }
 
-    async deleteTask(id:number):Promise<boolean>{
+    // async getTaskById(id:string):Promise<Task>{
+    //     return await this.taskRepository.getTaskById(id);
+    // }
+
+    // async updatetask(id:string,updatedFields:Partial<Task>):Promise<Task|null>{
+    //     return await this.taskRepository.updateTask(id,updatedFields);
+    // }
+
+    async deleteTask(id:string):Promise<boolean>{
         return await this.taskRepository.deleteTask(id);
     }
 }

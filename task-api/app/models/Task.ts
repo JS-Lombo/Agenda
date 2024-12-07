@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, ManyToOne } from "typeorm";
-import { User } from "./User"; // Asegúrate de importar la entidad User correctamente
+import { User } from "./User"; 
 
 @Entity()
 export class Task {
@@ -9,8 +9,8 @@ export class Task {
   @Column()
   title: string;
 
-  @Column({ nullable: true }) // Permite valores nulos en la base de datos
-  description?: string; // El signo de interrogación indica que es opcional en TypeScript
+  @Column({ nullable: true }) 
+  description?: string; 
 
   @Column({ default: false })
   completed: boolean;
@@ -19,5 +19,5 @@ export class Task {
   createdAt: Date;
 
   @ManyToOne(() => User, (user) => user.tasks, { onDelete: "CASCADE" }) // Relación Many-to-One
-  user: User; // Usuario propietario de la tarea
+  user: User; 
 }

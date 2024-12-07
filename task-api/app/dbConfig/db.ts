@@ -1,6 +1,7 @@
 import "reflect-metadata";
 import { DataSource } from "typeorm";
 import { Task } from "../models/Task";
+import { User } from "../models/User";
 
 export const AppDataSource = new DataSource({
   type: "postgres", // Cambia esto si usas otra base de datos
@@ -11,5 +12,6 @@ export const AppDataSource = new DataSource({
   database: process.env.DB_NAME,
   synchronize: true, // Cambia a false en producción
   logging: false,
-  entities: [Task],
+  entities: [Task,User],
+  dropSchema:true
 });
